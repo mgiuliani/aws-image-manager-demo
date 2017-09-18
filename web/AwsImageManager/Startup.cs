@@ -36,6 +36,9 @@ namespace AwsImageManager
             // Pull the default options
             services.AddDefaultAWSOptions(Configuration.GetAWSOptions());
 
+            // Add App Settings
+            services.Configure<ImageManagerSettings>(Configuration.GetSection("ImageManagerSettings"));
+
             // Add DI handlers for the AWS services we want to inject
             services.AddAWSService<IAmazonS3>();
             services.AddAWSService<IAmazonDynamoDB>();
