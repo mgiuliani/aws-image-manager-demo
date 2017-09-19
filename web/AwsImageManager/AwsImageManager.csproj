@@ -27,5 +27,8 @@
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AwsImageManager.Shared\AwsImageManager.Shared.csproj" />
+  </ItemGroup>
 
 </Project>

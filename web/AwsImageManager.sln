@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.26430.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwsImageManager", "AwsImageManager\AwsImageManager.csproj", "{1ED938E6-7611-4288-B412-95985C680B93}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwsImageManager.Lambda", "AwsImageManager.Lambda\AwsImageManager.Lambda.csproj", "{0C2B3844-A051-49B7-89B9-34BE2FE2B2CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwsImageManager.Shared", "AwsImageManager.Shared\AwsImageManager.Shared.csproj", "{63C64CEA-AD15-4EB3-8794-9BA6AA4C23BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{1ED938E6-7611-4288-B412-95985C680B93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1ED938E6-7611-4288-B412-95985C680B93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1ED938E6-7611-4288-B412-95985C680B93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C2B3844-A051-49B7-89B9-34BE2FE2B2CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C2B3844-A051-49B7-89B9-34BE2FE2B2CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C2B3844-A051-49B7-89B9-34BE2FE2B2CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C2B3844-A051-49B7-89B9-34BE2FE2B2CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63C64CEA-AD15-4EB3-8794-9BA6AA4C23BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63C64CEA-AD15-4EB3-8794-9BA6AA4C23BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63C64CEA-AD15-4EB3-8794-9BA6AA4C23BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63C64CEA-AD15-4EB3-8794-9BA6AA4C23BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
