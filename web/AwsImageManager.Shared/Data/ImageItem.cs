@@ -1,5 +1,6 @@
 ﻿using Amazon.DynamoDBv2.DataModel;
 using Amazon.DynamoDBv2.DocumentModel;
+using AwsImageManager.Shared.Converters;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -18,26 +19,13 @@ namespace AwsImageManager.Shared.Data
         public string imagePath { get; set; }
         public string bucket { get; set; }
         public string filename { get; set; }
-        
         public string extension { get; set; }
 
         public string size { get; set; }
 
         public string contentType { get; set; }
 
-        [DynamoDBIgnore]
-        public List<ImageTag> tags
-        {
-            get
-            {
-                return tagsJson == null ? null : JsonConvert.DeserializeObject<List<ImageTag>>(tagsJson);
-            }
-            set
-            {
-                tagsJson = JsonConvert.SerializeObject(value);
-            }
-        }
-        
-        public string tagsJson { get; set; }
+        [DynamoDBProperty(Converter = typeof(ImageTagConverter))]
+        public List<ImageTag> tags { get; set; }
     }
 }

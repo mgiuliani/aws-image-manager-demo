@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 
 namespace AwsImageManager.Shared.Data
 {
-    [DynamoDBDocument]
     public class ImageTag
     {
         public string Name { get; set; }
