@@ -67,12 +67,13 @@ namespace AwsImageManager.API
         /// </summary>
         /// <param name="file"></param>
         [HttpPost]
-        public async Task Post(IFormFile file)
+        public async Task Post()
         {
             using (var fileStream = new MemoryStream())
             {
                 // Temporarily store off the stream - awaiting the ensure bucket disposes of the IFormFile stream, so
                 // we need to hold onto it for now.
+                IFormFile file = Request.Form.Files?.FirstOrDefault();
                 file.CopyTo(fileStream);
  
                 // Ensure that the S3 bucket exists.  The "EnsureBucketExistsAsync" should do this, but bombs if the bucket
@@ -112,7 +113,18 @@ namespace AwsImageManager.API
             using (var context = new DynamoDBContext(this._dbClient))
             {
                 var images = await context.QueryAsync<ImageItem>(imageKey).GetRemainingAsync();
-                images.ForEach(async i => await context.DeleteAsync<ImageItem>(i));
+                images.ForEach(async i =>
+                {
+                    try
+                    {
+                        await context.DeleteAsync<ImageItem>(i);
+                        await this._s3Client.DeleteAsync(this._settings.S3BucketName, i.imageKey, new Dictionary<string, object>());
+                    }
+                    catch (Exception e)
+                    {
+                        // It's a demo .. so .. shh.
+                    }
+                });
             }
         }
 
@@ -120,6 +132,7 @@ namespace AwsImageManager.API
         {
             return new ImageDto()
             {
+                Key = i.imageKey,
                 Filename = i.filename,
                 Type = i.imageType,
                 Url = this._s3Client.GetPreSignedURL(new GetPreSignedUrlRequest()
@@ -128,7 +141,19 @@ namespace AwsImageManager.API
                     Key = i.imageKey,
                     Expires = DateTime.Now.AddHours(1)
                 }),
-                Tags = i.tags
+                Tags = i.tags == null ? null : i.tags
+                        .OrderByDescending(t => t.Confidence)
+                        .Select(ToImageTagDto)
+                        .ToList()
+            };
+        }
+
+        private ImageTagDto ToImageTagDto(ImageTag t)
+        {
+            return new ImageTagDto()
+            {
+                Name = t.Name,
+                Confidence = t.Confidence.ToString("N2") + "%"
             };
         }
     }

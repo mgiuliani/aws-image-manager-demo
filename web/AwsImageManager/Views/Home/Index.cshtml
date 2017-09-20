@@ -1,20 +1,23 @@
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Centare AWS Image Manager Demo";
 }
 
-<h2>Index</h2>
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="~/css/imagemanager.css" rel="stylesheet" />
+ 
+<div class="navbar navbar-dark bg-dark">
+    <div class="container d-flex justify-content-between">
+        <a href="#" class="navbar-brand">Centare AWS Image Manager Demo</a>
+    </div>
+</div>
 
-<form method="post" enctype="multipart/form-data" action="/api/images">
-    <div class="form-group">
-        <div class="col-md-10">
-            <p>Upload one or more files using this form:</p>
-            <input type="file" name="file" />
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-10">
-            <input type="submit" value="Upload" />
-        </div>
-    </div>
-</form>
+<div id="app">  
+    <image-list></image-list>
+</div>
+
+@*<script src="~/lib/popper.js/dist/popper.min.js"></script>
+<script src="~/lib/bootstrap/js/dist/popover.js"></script>*@
+<script src="https://unpkg.com/vue"></script>
+<script src="~/lib/axios/dist/axios.min.js"></script>
+<script src="~/js/imagemanager.js"></script>

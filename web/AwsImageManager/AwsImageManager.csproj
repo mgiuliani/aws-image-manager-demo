@@ -6,8 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="wwwroot\css\imagemanager.css" />
+    <Content Include="wwwroot\js\imagemanager.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Views\Home\" />
-    <Folder Include="wwwroot\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.3.4.17" />
