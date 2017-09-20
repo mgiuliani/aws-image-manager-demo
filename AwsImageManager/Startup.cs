@@ -9,6 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Amazon.S3;
 using Amazon.DynamoDBv2;
+using Microsoft.AspNetCore.SpaServices.Webpack;
+using AwsImageManager.API;
 
 namespace AwsImageManager
 {
@@ -29,6 +31,8 @@ namespace AwsImageManager
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
+
             // Add framework services.
             services.AddMvc();
 
@@ -50,13 +54,27 @@ namespace AwsImageManager
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+            if (env.IsDevelopment())
+            {
+              var options = new WebpackDevMiddlewareOptions() { HotModuleReplacement = true };
+              app.UseWebpackDevMiddleware(options);
+            }
+
+            app.UseCors(builder =>
+             builder.WithOrigins("*"));
+
+            app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseMvc(routes =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+              routes.MapRoute(
+                        name: "default",
+                        template: "{controller=Home}/{action=Index}/{id?}");
+
+              routes.MapSpaFallbackRoute(
+                name: "spa-fallback",
+                defaults: new { controller = "Home", action = "Index" });
             });
-        }
+    }
     }
 }
