@@ -79,7 +79,7 @@ export default {
             this.save(formData);
         },
         upload(formData) {
-            const url = 'http://localhost:50277/api/images';
+            const url = '/api/images';
             return Axios.post(url, formData)
                 // get data
                 .then(x => x.data)

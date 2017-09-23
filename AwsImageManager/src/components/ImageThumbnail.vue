@@ -18,7 +18,7 @@ export default {
   name: 'image-thumbnail',
   methods: {
         deleteImage() {
-            Axios.delete(`http://localhost:50277/api/images/` + this.model.key)
+            Axios.delete(`/api/images/` + this.model.key)
                 .then(response => {
                     this.$emit('imageDeleted');
                 });

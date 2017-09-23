@@ -39,7 +39,7 @@ export default {
   methods: {
       updatePhotoList() {
           this.loading = true;
-          Axios.get(`http://localhost:50277/api/images`)
+          Axios.get(`/api/images`)
               .then(response => {
                   this.loading = false;
                   this.imageList = response.data;
