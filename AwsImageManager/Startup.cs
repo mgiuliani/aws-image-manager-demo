@@ -75,6 +75,6 @@ namespace AwsImageManager
                 name: "spa-fallback",
                 defaults: new { controller = "Home", action = "Index" });
             });
-    }
+        }
     }
 }
