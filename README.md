@@ -1,12 +1,12 @@
-# saws-image-manager
+# aws-image-manager-demo
 
 A simple site to demonstrate how to use the AWS .NET SDK to upload images to S3, store metadata in DynamoDB, and process that information in a server-less fashion using Lambda & Rekognitio
 
 
 
-##Application Settings
+## Application Settings
 
-###AwsImageManager/appsettings.json
+### AwsImageManager/appsettings.json
 
 | Setting                                | Usage                                    |
 | -------------------------------------- | ---------------------------------------- |
@@ -17,9 +17,9 @@ A simple site to demonstrate how to use the AWS .NET SDK to upload images to S3,
 
  
 
-##Deployment
+## Deployment
 
-###AwsImageManager
+### AwsImageManager
 
 Deploy to Amazon Beanstalk.  The project is configured to run properly within an IIS environment.
 
@@ -28,12 +28,11 @@ Deploy to Amazon Beanstalk.  The project is configured to run properly within an
 *Beanstalk Instance Role Permissions*
 
 - S3 Full Access
-
 - DynamoDB Full Access
 
   ​
 
-###AwsImageManager.Lambda
+### AwsImageManager.Lambda
 
 Deploy to Amazon Lambda, and create a trigger from the bucket defined in the `ImageManagerSettings.S3BucketName` application setting.
 
