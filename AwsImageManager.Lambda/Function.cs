@@ -134,6 +134,7 @@ namespace AwsImageManager_Lambda
                                 Bucket = record.S3.Bucket.Name,
                                 Name = record.S3.Object.Key
                             }
+                            // Or Bytes
                         }
                     });
 
@@ -143,6 +144,7 @@ namespace AwsImageManager_Lambda
                         Confidence = l.Confidence
                     }).ToList();
 
+                    // Logging
                     var tags = new List<Amazon.S3.Model.Tag>();
                     foreach(var label in detectResponses.Labels)
                     {
